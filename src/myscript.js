@@ -43,7 +43,7 @@ function display() {
         k += '<td id="sku-' + products[i].Id + '">' + products[i].Id + '</td>';
         k += '<td id="name-' + products[i].Id + '">' + products[i].Name + '</td>';
         k += '<td id="price-' + products[i].Id + '">' + products[i].Price + '</td>';
-        k += '<td id="quantity-' + products[i].Id + '" >' + products[i].Quantity + '</td>';
+        k += '<td id="quantity-'+products[i].Id + '" >' + products[i].Quantity + '</td>';
         k += '<td id="e-d' + products[i].Id + '"><a href="#" id="edit-' + products[i].Id + '" class="edit">Edit</a><a href="#" id="delete-' + products[i].Id + '"  class="delete">'+" "+'Delete </a></td>';
         k += '<td><a href="#" id="update-' + products[i].Id + '" class="update">'+" "+'update</a>' + '<a href="#" id="confirm-' + products[i].Id + '" class="confirm">'+" "+' confirm</a><a href="#" id="cancel-' + products[i].Id + '" class="cancel">'+" "+'cancel</a> ' + '</td>';
         k += '</tr>';
@@ -111,7 +111,8 @@ function editData(id) {
 }
 function deleteRow(id) {
     $(".success").hide();
-
+    $(".confirm").show();
+    $(".cancel").show();
     var c = "confirm-" + id;
     var index = products.findIndex(x => x.Id == id);
     $("#product_list").on("click", "a", function () {
@@ -120,6 +121,10 @@ function deleteRow(id) {
             products.splice(index, 1);
             display(products);
             $(".dsuccess").show();
+            $(".confirm").hide();
+            $(".cancel").hide();
+        }
+        else{
             $(".confirm").hide();
             $(".cancel").hide();
         }
